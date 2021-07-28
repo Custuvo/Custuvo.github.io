@@ -1044,21 +1044,22 @@ $(function () {
       })
 </script>
 
-<div id="tp-weather-widget"></div>
-  <script>
-    (function(a,h,g,f,e,d,c,b){b=function(){d=h.createElement(g);c=h.getElementsByTagName(g)[0];d.src=e;d.charset="utf-8";d.async=1;c.parentNode.insertBefore(d,c)};a["SeniverseWeatherWidgetObject"]=f;a[f]||(a[f]=function(){(a[f].q=a[f].q||[]).push(arguments)});a[f].l=+new Date();if(a.attachEvent){a.attachEvent("onload",b)}else{a.addEventListener("load",b,false)}}(window,document,"script","SeniverseWeatherWidget","//cdn.sencdn.com/widget2/static/js/bundle.js?t="+parseInt((new Date().getTime() / 100000000).toString(),10)));
-    window.SeniverseWeatherWidget('show', {
-      flavor: "slim",
-      location: "WTJK7M54TWQZ",
-      geolocation: true,
-      language: "zh-Hans",
-      unit: "c",
-      theme: "auto",
-      token: "59fd066b-0d6f-45e4-a2c4-444216f9206a",
-      hover: "enabled",
-      container: "tp-weather-widget"
-    })
-  </script>
+<div id="he-plugin-standard"></div>
+<script>
+WIDGET = {
+  "CONFIG": {
+    "layout": "2",
+    "width": 230,
+    "height": 270,
+    "background": "1",
+    "dataColor": "FFFFFF",
+    "borderRadius": "5",
+    "modules": "10",
+    "key": "8c094fe97300435fb6e517c7bc2e7cc8"
+  }
+}
+</script>
+<script src="https://widget.qweather.net/standard/static/js/he-standard-common.js?v=2.0"></script>
 <script>
             window.imageLazyLoadSetting = {
                 isSPA: false,
