@@ -453,10 +453,43 @@
             </div>
             <div class="tag-chips">
                 
+                
+                <a href="/tags/%E6%80%BB%E7%BB%93/" title="总结: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="总结" style="background-color: #F9EBEA;">总结
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
             </div>
         </div>
     </div>
 </div>
+
+    
+    <link rel="stylesheet" type="text/css" href="/libs/jqcloud/jqcloud.css">
+<style type="text/css">
+    #tag-wordcloud {
+        width: 100%;
+        height: 300px;
+    }
+</style>
+
+<div class="container" data-aos="fade-up">
+    <div class="card">
+        <div id="tag-wordcloud" class="card-content"></div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/libs/jqcloud/jqcloud-1.0.4.min.js"></script>
+<script type="text/javascript">
+    
+
+    $('#tag-wordcloud').jQCloud([{"text":"总结","weight":1,"link":"/tags/总结/"}], {
+        autoResize: true
+    });
+</script>
 
     
 
@@ -534,7 +567,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">75</span>
+                        class="white-color">1.1k</span>
             
             
             
