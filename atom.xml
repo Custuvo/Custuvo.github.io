@@ -6,7 +6,7 @@
   <link href="http://custuvo.github.io/atom.xml" rel="self"/>
   
   <link href="http://custuvo.github.io/"/>
-  <updated>2021-07-28T09:13:00.742Z</updated>
+  <updated>2021-08-01T08:29:31.304Z</updated>
   <id>http://custuvo.github.io/</id>
   
   <author>
@@ -21,11 +21,21 @@
     <link href="http://custuvo.github.io/2021/07/28/ctf-ssrf/"/>
     <id>http://custuvo.github.io/2021/07/28/ctf-ssrf/</id>
     <published>2021-07-28T09:13:00.000Z</published>
-    <updated>2021-07-28T09:13:00.742Z</updated>
+    <updated>2021-08-01T08:29:31.304Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Web-SSRF&quot;&gt;&lt;a href=&quot;#Web-SSRF&quot; class=&quot;headerlink&quot; title=&quot;Web-SSRF&quot;&gt;&lt;/a&gt;&lt;strong&gt;Web-SSRF&lt;/strong&gt;&lt;/h1&gt;&lt;h4 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot;</summary>
+        
+      
     
     
     
     
+    <category term="总结" scheme="http://custuvo.github.io/tags/%E6%80%BB%E7%BB%93/"/>
     
   </entry>
   
