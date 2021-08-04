@@ -6,7 +6,7 @@
   <link href="http://custuvo.github.io/atom.xml" rel="self"/>
   
   <link href="http://custuvo.github.io/"/>
-  <updated>2021-08-01T08:29:31.304Z</updated>
+  <updated>2021-08-04T06:44:22.037Z</updated>
   <id>http://custuvo.github.io/</id>
   
   <author>
@@ -15,6 +15,44 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Web基础总结</title>
+    <link href="http://custuvo.github.io/2021/08/04/web-ji-chu-zong-jie/"/>
+    <id>http://custuvo.github.io/2021/08/04/web-ji-chu-zong-jie/</id>
+    <published>2021-08-03T23:49:46.000Z</published>
+    <updated>2021-08-04T06:44:22.037Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;CTF-Web基本题型及其解题方法&quot;&gt;&lt;a href=&quot;#CTF-Web基本题型及其解题方法&quot; class=&quot;headerlink&quot; title=&quot;CTF-Web基本题型及其解题方法&quot;&gt;&lt;/a&gt;CTF-Web基本题型及其解题方法&lt;/h1&gt;&lt;h3</summary>
+        
+      
+    
+    
+    
+    
+    <category term="基础" scheme="http://custuvo.github.io/tags/%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ezjs</title>
+    <link href="http://custuvo.github.io/2021/08/03/ezjs/"/>
+    <id>http://custuvo.github.io/2021/08/03/ezjs/</id>
+    <published>2021-08-03T07:32:02.000Z</published>
+    <updated>2021-08-03T07:45:57.016Z</updated>
+    
+    
+    
+    
+    
+    <category term="wp" scheme="http://custuvo.github.io/tags/wp/"/>
+    
+  </entry>
   
   <entry>
     <title>CTF-SSRF</title>
