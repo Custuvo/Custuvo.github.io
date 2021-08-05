@@ -6,7 +6,7 @@
   <link href="http://custuvo.github.io/atom.xml" rel="self"/>
   
   <link href="http://custuvo.github.io/"/>
-  <updated>2021-08-04T06:53:56.286Z</updated>
+  <updated>2021-08-05T07:25:56.311Z</updated>
   <id>http://custuvo.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>简单字符构造</title>
+    <link href="http://custuvo.github.io/2021/08/04/jian-dan-zi-fu-gou-zao/"/>
+    <id>http://custuvo.github.io/2021/08/04/jian-dan-zi-fu-gou-zao/</id>
+    <published>2021-08-04T07:25:30.000Z</published>
+    <updated>2021-08-05T07:25:56.311Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;浅析CTF绕过字符数字构造shell&quot;&gt;&lt;a href=&quot;#浅析CTF绕过字符数字构造shell&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="总结" scheme="http://custuvo.github.io/tags/%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
   
   <entry>
     <title>Web基础总结</title>
